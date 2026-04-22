@@ -1,4 +1,4 @@
-import { Poll, PollDetail, CreatePollRequest, VoteRequest, ErrorResponse, SuccessResponse } from '../types';
+import { Poll, PollDetail, CreatePollRequest, ErrorResponse, SuccessResponse } from '../types';
 
 const API_BASE = '/api';
 
