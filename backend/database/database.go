@@ -114,7 +114,7 @@ func (db *Database) GetAllPolls() ([]models.Poll, error) {
 	}
 	defer rows.Close()
 
-	var polls []models.Poll
+	polls := []models.Poll{}
 	for rows.Next() {
 		var poll models.Poll
 		if err := rows.Scan(&poll.ID, &poll.Title, &poll.Description, &poll.Deadline, &poll.CreatedAt, &poll.TotalVotes); err != nil {
@@ -127,7 +127,9 @@ func (db *Database) GetAllPolls() ([]models.Poll, error) {
 }
 
 func (db *Database) GetPollByID(id int) (*models.Poll, error) {
-	var poll models.Poll
+	poll := models.Poll{
+		Options: []models.Option{},
+	}
 	err := db.pool.QueryRow(
 		context.Background(),
 		`SELECT p.id, p.title, p.description, p.deadline, p.created_at,

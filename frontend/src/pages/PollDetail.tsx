@@ -24,6 +24,9 @@ function PollDetail() {
       setLoading(true)
       setError(null)
       const data = await api.getPoll(pollId)
+      if (data && !data.options) {
+        data.options = []
+      }
       setPoll(data)
     } catch (err) {
       setError(err instanceof Error ? err.message : '加载失败')

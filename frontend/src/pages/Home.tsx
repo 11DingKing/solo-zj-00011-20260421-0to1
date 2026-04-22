@@ -20,7 +20,7 @@ function Home() {
       setLoading(true)
       setError(null)
       const data = await api.getPolls()
-      setPolls(data)
+      setPolls(data || [])
     } catch (err) {
       setError(err instanceof Error ? err.message : '加载失败')
     } finally {
